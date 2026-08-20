@@ -3,46 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HexBot - Free Fire Chat Üretici</title>
+    <title>WEDZX | Free Fire Sensitivity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: #0f0f0f; color: #ffffff; font-family: Arial, sans-serif; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #333; }
-        h2 { color: #ff4757; text-align: center; }
-        button { background: #ff4757; color: white; border: none; padding: 12px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; width: 100%; font-weight: bold; margin-top: 10px; }
-        button:hover { background: #ff6b81; }
-        textarea { width: 100%; height: 250px; background: #121212; color: #00ffcc; border: 1px solid #444; padding: 10px; border-radius: 5px; font-family: monospace; margin-top: 15px; resize: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Arka Plan Efekti */
+        .bg-glow {
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 300px;
+            background: rgba(255, 77, 0, 0.15);
+            filter: blur(120px);
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #ff4d00, #ffbc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 77, 0, 0.4);
+        }
+
+        .subtitle {
+            color: #8a99ad;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(18, 24, 38, 0.7);
+            border: 1px solid rgba(255, 77, 0, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 77, 0, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffbc00;
+        }
+
+        .sens-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .sens-item {
+            background: rgba(11, 15, 25, 0.6);
+            padding: 10px 14px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .sens-label {
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        .sens-value {
+            font-weight: 700;
+            color: #ff4d00;
+        }
+
+        .copy-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff4d00, #ff7700);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(255, 77, 0, 0.4);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #4a5568;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>HEXBOT v1.0</h2>
-    <p style="text-align: center; color: #888; font-size: 14px;">M1014 Akrep Bozgunu & TikTok Spam Üretici</p>
-    
-    <button onclick="generateChat()">Mesajları Üret ve Kopyala</button>
-    
-    <textarea id="outputText" readonly placeholder="Üretilen mesajlar burada görünecek..."></textarea>
-</div>
+    <div class="bg-glow"></div>
 
-<script>
-function generateChat() {
-    let output = "";
-    const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-    
-    for (let i = 0; i < 15; i++) {
-        let uid = Math.floor(1000000000 + Math.random() * 9000000000);
-        let suffix = "";
-        for (let j = 0; j < 4; j++) {
-            suffix += chars.charAt(Math.floor(Math.random() * chars.length));
+    <header>
+        <div class="logo">WEDZX</div>
+        <div class="subtitle">Free Fire Pro Settings</div>
+    </header>
+
+    <div class="container">
+        <!-- Kart 1: Tournament / Headshot Meta -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title"><i class="fa-solid fa-crosshairs"></i> Turnuva & Tek Atış Meta</span>
+                <span style="font-size: 0.8rem; background: rgba(255,77,0,0.2); padding: 3px 8px; border-radius: 6px; color:#ff4d00;">OB53 Uyumlu</span>
+            </div>
+            <div class="sens-grid">
+                <div class="sens-item"><span class="sens-label">Genel</span><span class="sens-value">195</span></div>
+                <div class="sens-item"><span class="sens-label">Kırmızı Nokta</span><span class="sens-value">198</span></div>
+                <div class="sens-item"><span class="sens-label">2X Dürbün</span><span class="sens-value">192</span></div>
+                <div class="sens-item"><span class="sens-label">4X Dürbün</span><span class="sens-value">188</span></div>
+                <div class="sens-item"><span class="sens-label">Keskin Nişancı</span><span class="sens-value">75</span></div>
+                <div class="sens-item"><span class="sens-label">Serbest Bakış</span><span class="sens-value">90</span></div>
+            </div>
+            <button class="copy-btn" onclick="copySens(this, 'Genel: 195, RedDot: 198, 2X: 192, 4X: 188, AWM: 75, FreeLook: 90')">
+                <i class="fa-regular fa-copy"></i> Ayarları Kopyala
+            </button>
+        </div>
+
+        <!-- Kart 2: Close Range / Rush -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title"><i class="fa-solid fa-bolt"></i> Yakın Dövüş & Rush</span>
+                <span style="font-size: 0.8rem; background: rgba(255,188,0,0.2); padding: 3px 8px; border-radius: 6px; color:#ffbc00;">Hızlı Akış</span>
+            </div>
+            <div class="sens-grid">
+                <div class="sens-item"><span class="sens-label">Genel</span><span class="sens-value">200</span></div>
+                <div class="sens-item"><span class="sens-label">Kırmızı Nokta</span><span class="sens-value">200</span></div>
+                <div class="sens-item"><span class="sens-label">2X Dürbün</span><span class="sens-value">198</span></div>
+                <div class="sens-item"><span class="sens-label">4X Dürbün</span><span class="sens-value">195</span></div>
+                <div class="sens-item"><span class="sens-label">Keskin Nişancı</span><span class="sens-value">50</span></div>
+                <div class="sens-item"><span class="sens-label">Serbest Bakış</span><span class="sens-value">100</span></div>
+            </div>
+            <button class="copy-btn" onclick="copySens(this, 'Genel: 200, RedDot: 200, 2X: 198, 4X: 195, AWM: 50, FreeLook: 100')">
+                <i class="fa-regular fa-copy"></i> Ayarları Kopyala
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 WEDZX Utility. Tüm Hakları Saklıdır.
+    </footer>
+
+    <script>
+        function copySens(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fa-solid fa-check"></i> Kopyalandı!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
         }
-        output += `[UID:${uid}] wedzx${suffix}: M1014 Akrep Bozgunu [TikTok : WEDZX_ TAKİP ET]\n`;
-    }
-    
-    document.getElementById("outputText").value = output;
-    navigator.clipboard.writeText(output);
-    alert("15 adet spam mesajı panoya kopyalandı!");
-}
-</script>
-
+    </script>
 </body>
 </html>

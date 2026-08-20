@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HexBot - Free Fire Chat Üretici</title>
+    <style>
+        body { background: #0f0f0f; color: #ffffff; font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #333; }
+        h2 { color: #ff4757; text-align: center; }
+        button { background: #ff4757; color: white; border: none; padding: 12px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; width: 100%; font-weight: bold; margin-top: 10px; }
+        button:hover { background: #ff6b81; }
+        textarea { width: 100%; height: 250px; background: #121212; color: #00ffcc; border: 1px solid #444; padding: 10px; border-radius: 5px; font-family: monospace; margin-top: 15px; resize: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>HEXBOT v1.0</h2>
+    <p style="text-align: center; color: #888; font-size: 14px;">M1014 Akrep Bozgunu & TikTok Spam Üretici</p>
+    
+    <button onclick="generateChat()">Mesajları Üret ve Kopyala</button>
+    
+    <textarea id="outputText" readonly placeholder="Üretilen mesajlar burada görünecek..."></textarea>
+</div>
+
+<script>
+function generateChat() {
+    let output = "";
+    const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    
+    for (let i = 0; i < 15; i++) {
+        let uid = Math.floor(1000000000 + Math.random() * 9000000000);
+        let suffix = "";
+        for (let j = 0; j < 4; j++) {
+            suffix += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        output += `[UID:${uid}] wedzx${suffix}: M1014 Akrep Bozgunu [TikTok : WEDZX_ TAKİP ET]\n`;
+    }
+    
+    document.getElementById("outputText").value = output;
+    navigator.clipboard.writeText(output);
+    alert("15 adet spam mesajı panoya kopyalandı!");
+}
+</script>
+
+</body>
+</html>
